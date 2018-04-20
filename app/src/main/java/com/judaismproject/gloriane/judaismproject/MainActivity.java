@@ -3,6 +3,7 @@ package com.judaismproject.gloriane.judaismproject;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -27,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // first load
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        tx.replace(R.id.flContent, new AboutFragment());
+        tx.commit();
+
         // drawer
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -35,19 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
                         menuItem.setChecked(true);
-                        // close drawer when item is tapped
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
                         selectDrawerItem(menuItem);
-
-//                        Log.d("MainActivity", "this is menu item" + menuItem);
-//
-//                        drawerLayout.closeDrawers();
-
                         return true;
                     }
                 });

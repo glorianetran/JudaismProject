@@ -101,12 +101,9 @@ public class AnswerFragment extends Fragment{
                         new Intent().putExtra(EXTRA_SCORE, theScore)
                 );
 
-                //TODO: Find way to go back
-
-
+                getFragmentManager().popBackStack();
             }
         });
-
 
         return v;
 }

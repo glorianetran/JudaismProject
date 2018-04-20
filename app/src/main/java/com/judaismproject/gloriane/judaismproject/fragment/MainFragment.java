@@ -1,14 +1,12 @@
 package com.judaismproject.gloriane.judaismproject.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,6 +57,9 @@ public class MainFragment extends Fragment{
     // Toolbar
     Toolbar toolbar;
 
+    // Ints
+    int currentPosition = 0;
+
 
 
     // Constants
@@ -66,6 +67,7 @@ public class MainFragment extends Fragment{
     public static final String EXTRA_CORRECT_ANSWER = "CORRECT ANSWER";
     public static final String EXTRA_MAIN_SCORE = "SCORE RETURNED";
     public static final int REQUEST_CODE = 1;
+    public static final String VISIBLE_FRAGMENT = "visible_fragment";
 
 
    // private OnFragmentInteractionListener mListener;
@@ -96,6 +98,8 @@ public class MainFragment extends Fragment{
         scoreView = view.findViewById(R.id.score);
 
 
+        scoreView.setText("" + theScore);
+
         // data
         dataList.add(new ArrayList<String>(Arrays.asList("Do you like puppies?", "Obviously", "Is that even a question?", "They're adorable","Yes I do", "Obviously", Integer.toString(R.drawable.corgi))));
         dataList.add(new ArrayList<String>(Arrays.asList("Do you like food?", "No", "Of course", "I need it to survive.", "Who doesn't", "Of course", Integer.toString(R.drawable.food))));
@@ -116,29 +120,41 @@ public class MainFragment extends Fragment{
 
                 // find the radiobutton by returned id
                 radioButton = view.findViewById(selectedId);
+                if(radioButton != null) {
 
-                String answer = (String) radioButton.getText();
+                    String answer = (String) radioButton.getText();
 
-                //TODO: put stuff in a bundle
+                    //TODO: put stuff in a bundle
 
-                Bundle bundle = new Bundle();
-                bundle.putString(EXTRA_CORRECT_ANSWER, dataList.get(randomNum).get(5));
-                bundle.putString(EXTRA_MESSAGE, answer);
-                bundle.putInt(EXTRA_MAIN_SCORE, theScore);
-
-
-                AnswerFragment answerFrag = new AnswerFragment();
-                answerFrag.setTargetFragment(MainFragment.this, REQUEST_CODE);
-
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                answerFrag.setArguments(bundle);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(EXTRA_CORRECT_ANSWER, dataList.get(randomNum).get(5));
+                    bundle.putString(EXTRA_MESSAGE, answer);
+                    bundle.putInt(EXTRA_MAIN_SCORE, theScore);
 
 
-                fragmentTransaction.replace(R.id.flContent, answerFrag);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                    AnswerFragment answerFrag = new AnswerFragment();
+                    answerFrag.setTargetFragment(MainFragment.this, REQUEST_CODE);
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                    answerFrag.setArguments(bundle);
+
+
+                    fragmentTransaction.replace(R.id.flContent, answerFrag);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }else{
+                    final Snackbar snackBar = Snackbar.make(view.findViewById(R.id.main), "Please enter an answer", Snackbar.LENGTH_LONG);
+
+                    snackBar.setAction("Dismiss", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            snackBar.dismiss();
+                        }
+                    });
+                    snackBar.show();
+                }
 
             }
         });
@@ -162,7 +178,6 @@ public class MainFragment extends Fragment{
                 theScore = data.getIntExtra(AnswerFragment.EXTRA_SCORE, 0);
                 Log.d("MAINACTIVITY", "" + theScore);
                 scoreView.setText("" + theScore);
-                // Do something with the contact here (bigger example below)
             }
         }
     }
@@ -189,6 +204,5 @@ public class MainFragment extends Fragment{
         image.setImageResource(Integer.parseInt(populatedArray.get(6)));
 
     }
-
 
 }
