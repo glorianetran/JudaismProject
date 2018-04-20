@@ -8,6 +8,14 @@
     tools:context=".fragment.AnswerFragment">
 
     <TextView
+        android:id="@+id/hurray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="You are correct"
+        android:textSize="40dp"/>
+
+    <TextView
         android:id="@+id/answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,15 +23,6 @@
         android:text="THE ANSWER"
         android:textSize="30dp"
         android:textColor="@color/colorPrimaryDark"/>
-
-
-    <TextView
-        android:id="@+id/hurray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="You are correct"
-        android:textSize="40dp"/>
 
 
     <Button
