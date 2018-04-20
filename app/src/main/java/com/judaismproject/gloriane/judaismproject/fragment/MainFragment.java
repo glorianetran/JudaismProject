@@ -149,7 +149,6 @@ public class MainFragment extends Fragment{
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 questionNumber = data.getIntExtra(AnswerFragment.EXTRA_QUESTION, 0);
-                Log.d("MAINACTIVITY", "" + theScore);
             }
         }
     }
