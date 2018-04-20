@@ -44,18 +44,10 @@ public class MainFragment extends Fragment{
     // ArrayList
     List<ArrayList<String>> dataList;
 
-    // ImageView
-    ImageView image;
 
     // ints
     int theScore;
     int randomNum;
-
-    // Intent
-    Intent intent;
-
-    // Toolbar
-    Toolbar toolbar;
 
     // Ints
     int currentPosition = 0;
@@ -69,18 +61,9 @@ public class MainFragment extends Fragment{
     public static final int REQUEST_CODE = 1;
     public static final String VISIBLE_FRAGMENT = "visible_fragment";
 
-
-   // private OnFragmentInteractionListener mListener;
-
-    public MainFragment() {
-
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -94,22 +77,23 @@ public class MainFragment extends Fragment{
         radioGroup = view.findViewById(R.id.radiogroup);
         submit = view.findViewById(R.id.submit);
         dataList = new ArrayList<ArrayList<String>>();
-        image = view.findViewById(R.id.picture);
         scoreView = view.findViewById(R.id.score);
 
 
         scoreView.setText("" + theScore);
 
         // data
-        dataList.add(new ArrayList<String>(Arrays.asList("Do you like puppies?", "Obviously", "Is that even a question?", "They're adorable","Yes I do", "Obviously", Integer.toString(R.drawable.corgi))));
-        dataList.add(new ArrayList<String>(Arrays.asList("Do you like food?", "No", "Of course", "I need it to survive.", "Who doesn't", "Of course", Integer.toString(R.drawable.food))));
-        dataList.add(new ArrayList<String>(Arrays.asList("Which of these is not a fruit?","Watermelon", "Apple", "Lemon", "Durian", "Watermelon", Integer.toString(R.drawable.fruit))));
+        dataList.add(new ArrayList<String>(Arrays.asList("Do you like puppies?", "Obviously", "Is that even a question?", "They're adorable","Yes I do", "Obviously")));
+        dataList.add(new ArrayList<String>(Arrays.asList("Do you like food?", "No", "Of course", "I need it to survive.", "Who doesn't", "Of course")));
+        dataList.add(new ArrayList<String>(Arrays.asList("Which of these is not a fruit?","Watermelon", "Apple", "Lemon", "Durian", "Watermelon")));
 
 
         // Five fields: Question, Answer 1, Answer 2, Answer 3, Answer 4, Correct Answer, imageId
 
         // Populate the question
-        randomArrayList();
+
+        //TODO: Go through array in order
+        getNextQuestion();
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +108,6 @@ public class MainFragment extends Fragment{
 
                     String answer = (String) radioButton.getText();
 
-                    //TODO: put stuff in a bundle
 
                     Bundle bundle = new Bundle();
                     bundle.putString(EXTRA_CORRECT_ANSWER, dataList.get(randomNum).get(5));
@@ -141,7 +124,7 @@ public class MainFragment extends Fragment{
                     answerFrag.setArguments(bundle);
 
 
-                    fragmentTransaction.replace(R.id.flContent, answerFrag);
+                    fragmentTransaction.replace(R.id.frame_content, answerFrag);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }else{
@@ -164,13 +147,6 @@ public class MainFragment extends Fragment{
     }
 
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
@@ -186,11 +162,11 @@ public class MainFragment extends Fragment{
     public void onResume() {
         super.onResume();
 
-        randomArrayList();
+        getNextQuestion();
         radioGroup.clearCheck();
     }
 
-    public void randomArrayList(){
+    public void getNextQuestion(){
         Random rand = new Random();
         randomNum = rand.nextInt(dataList.size());
         final ArrayList<String> populatedArray = dataList.get(randomNum);
@@ -201,8 +177,6 @@ public class MainFragment extends Fragment{
         }
 
         question.setText(populatedArray.get(0));
-        image.setImageResource(Integer.parseInt(populatedArray.get(6)));
-
     }
 
 }

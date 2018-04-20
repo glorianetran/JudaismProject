@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
     tools:context=".fragment.BibliographyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="BIBLIOGRAPHY" />
+        android:orientation="vertical"
+        android:gravity="center">
 
-</FrameLayout>
+
+            <TextView
+                android:id="@+id/primary"
+                android:text="Primary Source"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textSize="25sp"
+                android:background="@color/score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/osamu"
+                android:text="@string/osamu"
+                android:gravity = "center_vertical|left|start"
+                android:layout_margin="20dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"/>
+
+
+             <TextView
+                android:id="@+id/secondary"
+                android:text="Secondary Sources"
+                android:padding="10dp"
+                android:background="@color/score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/goodman"
+                android:text="@string/goodman"
+                android:gravity = "center_vertical|left|start"
+                android:layout_margin="20dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:id="@+id/ito"
+                android:text="@string/ito"
+                android:gravity = "center_vertical|left|start"
+                android:layout_margin="20dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:id="@+id/kowner"
+                android:text="@string/kowner"
+                android:gravity = "center_vertical|left|start"
+                android:layout_margin="20dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:id="@+id/shimazu"
+                android:text="@string/shimazu"
+                android:gravity = "center_vertical|left|start"
+                android:layout_margin="20dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:id="@+id/taijima"
+                android:text="@string/taijima"
+                android:gravity = "center_vertical|left|start"
+                android:layout_margin="20dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

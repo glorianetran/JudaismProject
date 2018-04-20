@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // first load
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-        tx.replace(R.id.flContent, new AboutFragment());
+        tx.replace(R.id.frame_content, new AboutFragment());
         tx.commit();
 
         // drawer
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
 
         // Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             fragment = (Fragment) fragmentClass.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.frame_content, fragment).commit();
 
             // Highlight the selected item has been done by NavigationView
             menuItem.setChecked(true);
