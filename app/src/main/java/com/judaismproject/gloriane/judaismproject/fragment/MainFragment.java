@@ -1,10 +1,15 @@
 package com.judaismproject.gloriane.judaismproject.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,15 +30,8 @@ import java.util.Random;
 import static android.app.Activity.RESULT_OK;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MainFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class MainFragment extends Fragment {
+
+public class MainFragment extends Fragment{
     // Radio Buttons
     RadioGroup radioGroup;
     RadioButton radioButton;
@@ -52,52 +50,30 @@ public class MainFragment extends Fragment {
     ImageView image;
 
     // ints
-    int score;
+    int theScore;
     int randomNum;
 
     // Intent
     Intent intent;
+
+    // Toolbar
+    Toolbar toolbar;
+
 
 
     // Constants
     public static final String EXTRA_MESSAGE = "ANSWER";
     public static final String EXTRA_CORRECT_ANSWER = "CORRECT ANSWER";
     public static final String EXTRA_MAIN_SCORE = "SCORE RETURNED";
-    public static final int SCORE_REQUEST = 1;
+    public static final int REQUEST_CODE = 1;
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+   // private OnFragmentInteractionListener mListener;
 
     public MainFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
-        MainFragment fragment = new MainFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,22 +85,15 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
-
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
+        final View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         // initialization
-        question = v.findViewById(R.id.question);
-        radioGroup = v.findViewById(R.id.radiogroup);
-        submit = v.findViewById(R.id.submit);
+        question = view.findViewById(R.id.question);
+        radioGroup = view.findViewById(R.id.radiogroup);
+        submit = view.findViewById(R.id.submit);
         dataList = new ArrayList<ArrayList<String>>();
-        image = v.findViewById(R.id.picture);
-        scoreView = v.findViewById(R.id.score);
-        score = 0;
+        image = view.findViewById(R.id.picture);
+        scoreView = view.findViewById(R.id.score);
 
 
         // data
@@ -146,43 +115,38 @@ public class MainFragment extends Fragment {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
 
                 // find the radiobutton by returned id
-                radioButton = v.findViewById(selectedId);
-
+                radioButton = view.findViewById(selectedId);
 
                 String answer = (String) radioButton.getText();
 
-                //Toast.makeText(MainActivity.this, answer, Toast.LENGTH_SHORT).show();
+                //TODO: put stuff in a bundle
 
-                // Use intent to send data to the Detail Activity
-                intent.putExtra(EXTRA_MESSAGE, answer);
-                intent.putExtra(EXTRA_CORRECT_ANSWER, dataList.get(randomNum).get(5));
-                intent.putExtra(EXTRA_MAIN_SCORE, score);
-                startActivityForResult(intent, SCORE_REQUEST);
+                Bundle bundle = new Bundle();
+                bundle.putString(EXTRA_CORRECT_ANSWER, dataList.get(randomNum).get(5));
+                bundle.putString(EXTRA_MESSAGE, answer);
+                bundle.putInt(EXTRA_MAIN_SCORE, theScore);
+
+
+                AnswerFragment answerFrag = new AnswerFragment();
+                answerFrag.setTargetFragment(MainFragment.this, REQUEST_CODE);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                answerFrag.setArguments(bundle);
+
+
+                fragmentTransaction.replace(R.id.flContent, answerFrag);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
             }
         });
 
 
-        return v;
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
 
 
     @Override
@@ -190,19 +154,14 @@ public class MainFragment extends Fragment {
         super.onAttach(context);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SCORE_REQUEST) {
+        if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                //score = data.getIntExtra(AnswerActivity.EXTRA_SCORE, 0);
-                Log.d("MAINACTIVITY", "" + score);
-                scoreView.setText("" + score);
+                theScore = data.getIntExtra(AnswerFragment.EXTRA_SCORE, 0);
+                Log.d("MAINACTIVITY", "" + theScore);
+                scoreView.setText("" + theScore);
                 // Do something with the contact here (bigger example below)
             }
         }
@@ -231,18 +190,5 @@ public class MainFragment extends Fragment {
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+
 }
