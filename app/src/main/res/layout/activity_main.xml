@@ -11,6 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <FrameLayout
+        android:id="@+id/flContent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -19,5 +25,31 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer_view"
         app:headerLayout="@layout/nav_header"/>
+
+    <!--<fragment android:name="com.judaismproject.gloriane.judaismproject.fragment.AboutFragment"-->
+        <!--android:id="@+id/about_fragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <!--<fragment android:name="com.judaismproject.gloriane.judaismproject.fragment.MainFragment"-->
+        <!--android:id="@+id/main_fragment"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <!--<fragment android:name="com.judaismproject.gloriane.judaismproject.fragment.AnswerFragment"-->
+        <!--android:id="@+id/answer_fragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <!--<fragment android:name="com.judaismproject.gloriane.judaismproject.fragment.MangaFragment"-->
+        <!--android:id="@+id/manga_fragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <!--<fragment android:name="com.judaismproject.gloriane.judaismproject.fragment.BibliographyFragment"-->
+        <!--android:id="@+id/bibliography_fragment"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent" />-->
 
 </android.support.v4.widget.DrawerLayout>
