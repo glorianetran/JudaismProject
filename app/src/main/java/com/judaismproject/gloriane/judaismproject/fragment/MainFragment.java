@@ -47,17 +47,17 @@ public class MainFragment extends Fragment{
 
     // ints
     int theScore;
-    int randomNum;
+    int questionNumber;
 
     // Ints
     int currentPosition = 0;
-
 
 
     // Constants
     public static final String EXTRA_MESSAGE = "ANSWER";
     public static final String EXTRA_CORRECT_ANSWER = "CORRECT ANSWER";
     public static final String EXTRA_MAIN_SCORE = "SCORE RETURNED";
+    public static final String EXTRA_QUESTION_NUM = "QUESTION_NUMBER";
     public static final int REQUEST_CODE = 1;
     public static final String VISIBLE_FRAGMENT = "visible_fragment";
 
@@ -77,10 +77,6 @@ public class MainFragment extends Fragment{
         radioGroup = view.findViewById(R.id.radiogroup);
         submit = view.findViewById(R.id.submit);
         dataList = new ArrayList<ArrayList<String>>();
-        scoreView = view.findViewById(R.id.score);
-
-
-        scoreView.setText("" + theScore);
 
         // data
         dataList.add(new ArrayList<String>(Arrays.asList("Do you like puppies?", "Obviously", "Is that even a question?", "They're adorable","Yes I do", "Obviously")));
@@ -110,9 +106,10 @@ public class MainFragment extends Fragment{
 
 
                     Bundle bundle = new Bundle();
-                    bundle.putString(EXTRA_CORRECT_ANSWER, dataList.get(randomNum).get(5));
+                    bundle.putString(EXTRA_CORRECT_ANSWER, dataList.get(questionNumber).get(5));
                     bundle.putString(EXTRA_MESSAGE, answer);
                     bundle.putInt(EXTRA_MAIN_SCORE, theScore);
+                    bundle.putInt(EXTRA_QUESTION_NUM, questionNumber);
 
 
                     AnswerFragment answerFrag = new AnswerFragment();
@@ -151,9 +148,8 @@ public class MainFragment extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                theScore = data.getIntExtra(AnswerFragment.EXTRA_SCORE, 0);
+                questionNumber = data.getIntExtra(AnswerFragment.EXTRA_QUESTION, 0);
                 Log.d("MAINACTIVITY", "" + theScore);
-                scoreView.setText("" + theScore);
             }
         }
     }
@@ -167,9 +163,7 @@ public class MainFragment extends Fragment{
     }
 
     public void getNextQuestion(){
-        Random rand = new Random();
-        randomNum = rand.nextInt(dataList.size());
-        final ArrayList<String> populatedArray = dataList.get(randomNum);
+        final ArrayList<String> populatedArray = dataList.get(questionNumber);
 
         for(int i = 0; i < radioGroup.getChildCount(); i++){
             RadioButton dynamicTextButton = (RadioButton) radioGroup.getChildAt(i);

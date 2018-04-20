@@ -12,18 +12,6 @@
         android:orientation="vertical"
         android:id="@+id/main">
 
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="0"
-            android:background="@color/banner"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor= "@color/white"/>
-
 
         <TextView
             android:id="@+id/question"
