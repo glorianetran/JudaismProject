@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.AboutFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/about"
+            android:text="Project"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:background="@color/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:text="@string/content"
+            android:gravity = "center_vertical|left|start"
+            android:layout_margin="20dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:text="Argument"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:background="@color/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+
+        <TextView
+            android:text="@string/argument"
+            android:gravity = "center_vertical|left|start"
+            android:layout_margin="20dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:text="Findings"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:background="@color/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+
+        <TextView
+            android:text="@string/findings"
+            android:gravity = "center_vertical|left|start"
+            android:layout_margin="20dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:text="The App"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:background="@color/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:text="@string/app"
+            android:gravity = "center_vertical|left|start"
+            android:layout_margin="20dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

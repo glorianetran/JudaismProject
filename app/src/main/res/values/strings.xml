@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">JudaismProject</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--About-->
+    <string name="content">My project focuses on Jewish representation in Japanese media. I analyzed Tezuka Osamu\'s manga "Message to Adolf". The manga focuses on World War II in Japan. It is based off the rumors that Hitler
+    had Jewish ancestry. The manga focuses on three people named Adolf. The first is Adolf Hitler, the second is Adolf Kaufmann (Japanese/German), and Adolf Kamil (Jewish).</string>
+    <string name="findings">In the manga, Jews are portrayed as strong, confident, trustworthy and moral. Tezuka highlights Jews and their suffering during the Holocaust. But oddly, I also found that
+    Japan depicted themselves as victims alongside the Jews.</string>
+    <string name="argument">Japan uses Jews to rewrite their militant history.</string>
+    <string name="app">This app was made for a Judaism through Film class at Mills College in Spring 2018. It contains three other sections. The manga section for a preview of the manga, a quiz for learning about the topic, and the bibliography.</string>
+
+
+    <!--Bibliography strings-->
+    <string name="osamu">Osamu, Tezuka. Adorufu ni Tsugu. Tokyo: Bungeishunjū, 1983-1985. </string>
+    <string name="goodman">Goodman, David G. and Masanori Miyazawa. Jews in the Japanese Mind: The History and Uses of a Cultural Stereotype (Studies of Modern Japan) (Lanham: Lexington Books, 2000), 135-182.</string>
+    <string name="ito">Ito, Kinko. “A History of Manga in the Context of Japanese Culture and Society.” Journal of Popular Culture 38, no.3 (2005): 456-475.</string>
+    <string name="kowner">Kowner, Rotem. “On Ignorance, Respect, and Suspicion: Current Japanese Attitudes towards Jews”, Analysis of Current Trends in Antisemitism, no.11 (1997), http://www.academia.edu/12556038/On_Ignorance_Respect_and_Suspicion_Current_Japanese_Attitudes_towards_Jews.</string>
+    <string name="shimazu">Shimazu, Naoko. "Popular Representations of the Past: The Case of Postwar Japan." Journal of Contemporary History 38, no. 1 (2003): 101-16.</string>
+    <string name="taijima">Tajima, Atsushi, and Michael Thornton. "Strategic solidarity: Japanese imaginings of Blacks and race in popular media." Inter-Asia Cultural Studies 13, no. 3 (September 2012): 345-364. Academic Search Complete, EBSCOhost (accessed March 7, 2018).</string>
+    <string name="manga">Manga</string>
+    <string name="quiz">Quiz</string>
+    <string name="bibliography">Bibliography</string>
+    <string name="about">About</string>
+
 </resources>
