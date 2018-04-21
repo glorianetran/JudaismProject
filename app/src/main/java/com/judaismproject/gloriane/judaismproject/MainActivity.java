@@ -1,7 +1,7 @@
 package com.judaismproject.gloriane.judaismproject;
 
-import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +19,11 @@ import com.judaismproject.gloriane.judaismproject.fragment.MainFragment;
 import com.judaismproject.gloriane.judaismproject.fragment.MangaFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Ints
+    int currentPosition = 0;
+
+    public static final String VISIBLE_FRAGMENT = "visible_fragment";
 
     // Drawer Layout
     private DrawerLayout drawerLayout;
@@ -55,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-
         setupDrawerContent(navigationView);
 
     }
@@ -81,6 +85,30 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+    }
+
+    private class FragManager implements FragmentManager.OnBackStackChangedListener {
+
+        public void onBackStackChanged() {
+            FragmentManager fragMan = getSupportFragmentManager();
+            Fragment fragment = fragMan.findFragmentByTag(VISIBLE_FRAGMENT);
+
+            if (fragment instanceof AboutFragment) {
+                currentPosition = 0;
+            }
+            if (fragment instanceof MangaFragment) {
+                currentPosition = 1;
+            }
+            if (fragment instanceof MainFragment) {
+                currentPosition = 2;
+            }
+            if (fragment instanceof AnswerFragment) {
+                currentPosition = 2;
+            }
+            if (fragment instanceof BibliographyFragment) {
+                currentPosition = 3;
+            }
+        }
     }
 
 
@@ -112,8 +140,11 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             fragment = (Fragment) fragmentClass.newInstance();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.frame_content, fragment).commit();
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.frame_content, fragment, VISIBLE_FRAGMENT);
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
 
             // Highlight the selected item has been done by NavigationView
             menuItem.setChecked(true);
@@ -127,15 +158,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-//        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//        ft.replace(R.id.flContent, fragment, "visible_fragment");
-//        ft.addToBackStack(null);
-//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//        ft.commit();
-//        setTitle(menuItem.getTitle());
-//        drawerLayout.closeDrawers();
     }
-
 
 }

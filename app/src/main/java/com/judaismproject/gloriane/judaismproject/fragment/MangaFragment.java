@@ -9,12 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 import com.judaismproject.gloriane.judaismproject.R;
 
 import java.util.ArrayList;
 
-public class MangaFragment extends Fragment{
+public class MangaFragment extends Fragment {
 
     ImageView imageView;
 
@@ -133,5 +132,4 @@ public class MangaFragment extends Fragment{
 
         return view;
     }
-
 }

@@ -3,19 +3,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/about"
-            android:title="About"
+            android:title="@string/about"
             android:icon="@drawable/ic_info"/>
         <item
             android:id="@+id/manga"
-            android:title="Manga"
+            android:title="@string/manga"
             android:icon="@drawable/ic_book"/>
 
         <item android:id="@+id/quiz"
-            android:title="Quiz"
+            android:title="@string/quiz"
             android:icon="@drawable/ic_assignment"/>
 
         <item android:id="@+id/bibliography"
-            android:title="Bibliography"
+            android:title="@string/bibliography"
             android:icon="@drawable/ic_bibliography"/>
 
     </group>

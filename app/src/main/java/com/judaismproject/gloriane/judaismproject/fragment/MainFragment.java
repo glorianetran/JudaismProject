@@ -1,19 +1,15 @@
 package com.judaismproject.gloriane.judaismproject.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,11 +19,8 @@ import com.judaismproject.gloriane.judaismproject.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
-
-
 
 public class MainFragment extends Fragment{
     // Radio Buttons
@@ -49,17 +42,12 @@ public class MainFragment extends Fragment{
     int theScore;
     int questionNumber;
 
-    // Ints
-    int currentPosition = 0;
-
-
     // Constants
     public static final String EXTRA_MESSAGE = "ANSWER";
     public static final String EXTRA_CORRECT_ANSWER = "CORRECT ANSWER";
     public static final String EXTRA_MAIN_SCORE = "SCORE RETURNED";
     public static final String EXTRA_QUESTION_NUM = "QUESTION_NUMBER";
     public static final int REQUEST_CODE = 1;
-    public static final String VISIBLE_FRAGMENT = "visible_fragment";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -139,7 +127,6 @@ public class MainFragment extends Fragment{
             }
         });
 
-
         return view;
     }
 
@@ -153,13 +140,6 @@ public class MainFragment extends Fragment{
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        getNextQuestion();
-        radioGroup.clearCheck();
-    }
 
     public void getNextQuestion(){
         final ArrayList<String> populatedArray = dataList.get(questionNumber);
