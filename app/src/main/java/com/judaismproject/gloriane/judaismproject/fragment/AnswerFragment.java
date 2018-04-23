@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.judaismproject.gloriane.judaismproject.MainActivity;
 import com.judaismproject.gloriane.judaismproject.R;
 
 
@@ -32,9 +32,17 @@ public class AnswerFragment extends Fragment{
     // Strings
     String userAnswer;
     String correct;
+    String explanation;
 
     // constants
     public static final String EXTRA_QUESTION = "NEXT QUESTION";
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).setNavItemChecked(2);
+        ((MainActivity)getActivity()).setTitle("Quiz");
+    }
 
 
     @Override
@@ -56,12 +64,11 @@ public class AnswerFragment extends Fragment{
         // reset
         reset.setEnabled(true);
 
-        //:TODO grab data from fragment class, data are 2  strings (userAnswer,correctAnswer, score)
-
         Bundle bundle = getArguments();
         userAnswer = bundle.getString(MainFragment.EXTRA_MESSAGE);
         correct = bundle.getString(MainFragment.EXTRA_CORRECT_ANSWER);
         questionNumber = bundle.getInt(MainFragment.EXTRA_QUESTION_NUM, 0);
+        explanation = bundle.getString(MainFragment.EXTRA_EXPLANATION);
 
 
         if(userAnswer.equals(correct)) {
@@ -69,9 +76,11 @@ public class AnswerFragment extends Fragment{
             hurray.setTextColor(getResources().getColor(R.color.correct));
 
             //array count - 1
-            if (questionNumber < 2) {
+            if (questionNumber < 16) {
                 questionNumber++;
             } else{
+                nextQuestion.setText("START OVER");
+                reset.setEnabled(false);
                 Snackbar.make(container, "You have finished all the questions!", Snackbar.LENGTH_LONG).show();
                 questionNumber = 0;
             }
@@ -83,7 +92,7 @@ public class AnswerFragment extends Fragment{
             questionNumber = 0;
         }
 
-        answer.setText("ANSWER: " + correct);
+        answer.setText("ANSWER: " + explanation);
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override

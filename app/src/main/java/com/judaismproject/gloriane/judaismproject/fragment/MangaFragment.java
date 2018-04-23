@@ -1,6 +1,7 @@
 package com.judaismproject.gloriane.judaismproject.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.GestureDetector;
@@ -9,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.judaismproject.gloriane.judaismproject.MainActivity;
 import com.judaismproject.gloriane.judaismproject.R;
 
 import java.util.ArrayList;
@@ -28,8 +31,20 @@ public class MangaFragment extends Fragment {
     public MangaFragment(){}
 
     @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity)getActivity()).setNavItemChecked(1);
+        ((MainActivity)getActivity()).setTitle("Manga");
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override

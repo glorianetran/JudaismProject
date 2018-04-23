@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.judaismproject.gloriane.judaismproject.fragment.AboutFragment;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     // Drawer Layout
     private DrawerLayout drawerLayout;
 
+    public NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         // drawer
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         setupDrawerContent(navigationView);
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragManager());
 
     }
 
@@ -108,12 +112,19 @@ public class MainActivity extends AppCompatActivity {
             if (fragment instanceof BibliographyFragment) {
                 currentPosition = 3;
             }
+
         }
+    }
+
+    public void setNavItemChecked(int id)
+    {
+        Menu m=navigationView.getMenu();
+        MenuItem mi=m.getItem(id);
+        mi.setChecked(true);
     }
 
 
     public void selectDrawerItem(MenuItem menuItem) {
-        // Create a new fragment and specify the fragment to show based on nav item clicked
 
         Fragment fragment;
 
