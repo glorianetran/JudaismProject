@@ -39,13 +39,11 @@ public class MainFragment extends Fragment{
 
 
     // ints
-    int theScore;
     int questionNumber;
 
     // Constants
     public static final String EXTRA_MESSAGE = "ANSWER";
     public static final String EXTRA_CORRECT_ANSWER = "CORRECT ANSWER";
-    public static final String EXTRA_MAIN_SCORE = "SCORE RETURNED";
     public static final String EXTRA_QUESTION_NUM = "QUESTION_NUMBER";
     public static final int REQUEST_CODE = 1;
     public static final String EXTRA_EXPLANATION = "EXPLANATION";
