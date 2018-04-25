@@ -75,6 +75,21 @@ public class MangaFragment extends Fragment {
         imageIds.add(R.drawable.manga16);
         imageIds.add(R.drawable.manga17);
         imageIds.add(R.drawable.manga18);
+        imageIds.add(R.drawable.manga21);
+        imageIds.add(R.drawable.manga22);
+        imageIds.add(R.drawable.manga23);
+        imageIds.add(R.drawable.manga24);
+        imageIds.add(R.drawable.manga25);
+        imageIds.add(R.drawable.manga26);
+        imageIds.add(R.drawable.manga27);
+        imageIds.add(R.drawable.manga28);
+        imageIds.add(R.drawable.manga29);
+        imageIds.add(R.drawable.manga30);
+        imageIds.add(R.drawable.manga31);
+        imageIds.add(R.drawable.manga32);
+        imageIds.add(R.drawable.manga33);
+        imageIds.add(R.drawable.manga34);
+        imageIds.add(R.drawable.manga35);
 
         imageView.setImageResource(imageIds.get(0));
 
